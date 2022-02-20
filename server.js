@@ -19,7 +19,8 @@ app.get('/', (req, res) => {
 // search a grocery item
 app.get('/search/:searchQuery', async (req, res) => {
     const { searchQuery } = req.params
-    const filteredGroceries = groceries.filter((elt) => elt.productDescription.includes(searchQuery) )
+    let regex = new RegExp(searchQuery, 'i')
+    const filteredGroceries = groceries.filter(elt => regex.test(elt.productDescription))
     console.log(filteredGroceries)
     res.status(200).json({ total: filteredGroceries.length, filteredGroceries})
 })
