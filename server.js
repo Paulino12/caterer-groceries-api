@@ -11,8 +11,13 @@ const PORT = process.env.PORT || 8000
 app.use(cors())
 app.use(express.json())
 
-// get all groceries
+// welcome
 app.get('/', (req, res) => {
+    res.send("Welcome to Caterer's Groceries")
+})
+
+// get all groceries
+app.get('/groceries', (req, res) => {
     res.status(200).json({total: groceries.length, groceries})
 })
 
@@ -21,7 +26,6 @@ app.get('/search/:searchQuery', async (req, res) => {
     const { searchQuery } = req.params
     let regex = new RegExp(searchQuery, 'i')
     const filteredGroceries = groceries.filter(elt => regex.test(elt.productDescription))
-    console.log(filteredGroceries)
     res.status(200).json({ total: filteredGroceries.length, filteredGroceries})
 })
 
