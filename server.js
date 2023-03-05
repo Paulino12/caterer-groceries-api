@@ -15,5 +15,5 @@ app.use(express.json())
 app.use('/', groceriesRoutes)
 
 app.listen(PORT, () => {
-    console.log(`Listening at PORT: ${PORT}`)
+    console.log(`Listening at PORT NUMBER: ${PORT}`)
 })
