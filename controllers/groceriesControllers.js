@@ -11,7 +11,7 @@ export const welcome = (req, res) => {
 
 // get all groceries
 export const getAllGroceries = async (req, res) => {
-    const groceries = await db.collection("groceries").find({}).toArray()
+    const groceries = await db.collection("groceries-march2023").find({}).toArray()
     res.status(200).json({total: groceries.length, groceries})
 }
 
@@ -19,6 +19,6 @@ export const getAllGroceries = async (req, res) => {
 export const searchGroceries = async (req, res) => {
     const { searchQuery } = req.params
     let regex = new RegExp(searchQuery, 'gi')
-    const foundGroceries = await db.collection("groceries").find({ productDescription: regex }).toArray()
+    const foundGroceries = await db.collection("groceries-march2023").find({ productDescription: regex }).toArray()
     res.status(200).json({ total: foundGroceries.length, foundGroceries})
 }
